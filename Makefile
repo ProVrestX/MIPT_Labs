@@ -2,6 +2,7 @@ all: build
 
 .PHONY: build
 build:
+	@mkdir -p tmp
 	xelatex -shell-escape _main.tex
 
 .PHONY: git
@@ -15,4 +16,5 @@ push: git
 
 .PHONY: clean
 clean:
+	@rm -rf tmp
 	@rm -rf *.gnuplot *-fig*.pdf *.log *.aux *.bcf *.out *.xml *.toc w18-test-*.tex
