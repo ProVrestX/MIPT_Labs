@@ -1,0 +1,142 @@
+\chapter{Результаты}
+\label{ch:results}
+
+Для определения необходимых зависимостей была использована установка, представляющая собой колебательный контур, состоящий из катушки индуктивности, конденсатора переменной емкости и переменного резистора, а также генератора сигналов и осциллографа. Полное описание установки см. в Приложении.
+
+В результате была получена зависимость периода колебаний контура от емкости конденсатора в нем, изменяющейся в диапазоне от 25 до 50 нФ. Полученное отношение представлено на рис. \ref{fig:T_C}.
+
+\begin{figure}[ht]
+	\begin{gnuplot}[terminal = pdf]		
+		set table "tmp/T_C_tmp.txt"
+		plot "txt/T_C.txt" u (sqrt($1)):2
+		unset table
+		
+		#f(x) = k*x + b
+		#fit f(x) "tmp/T_C_tmp.txt" u 1:2 via k,b
+		
+		#set print "tmp/T_C_fit_tmp.txt"
+		#print sprintf("k= %f ± %f", k, k_err)
+		#print sprintf("b= %f \textsc{}± %f", b, b_err)
+		#set print
+		
+		set xl "√C, нФ^{1/2}"
+		set xr [4.7:7.3]
+		set format x "%.1f"
+		set yl "T, мкс"
+		set grid
+		set key b
+		plot "txt/T_C.txt" u (sqrt($1)):(2*3.14*sqrt(0.1*$1)*(10**1.5)) w lp lw 3 pt 7 ps 0.5 t "T_{теор}", \
+			"tmp/T_C_tmp.txt" u 1:2 w lp lw 3 pt 7 ps 0.5 t "T_{эксп}"
+			
+	\end{gnuplot}
+	\vspace{-40pt}
+	\caption{Зависимости периода колебаний контура от емкости конденсатора в нем, полученные теоретически и экспериментально.}
+	\label{fig:T_C}
+\end{figure}
+\FloatBarrier
+
+Из графика видно, что полученное отношение находится немного выше теоретически рассчитанного с помощью \eqref{equ:T_C}. Это показывает, что в контуре присутствует небольшое сопротивление или дополнительная емкость.
+
+Далее была определена зависимость декремента затухания от дополнительного сопротивления в контуре. Измерения проведены для сопротивлений в диапазоне от 140 до 650 Ом и представлены в координатах $\frac{1}{\eta^2}$ vs $\frac{1}{R^2}$ на рис. \ref{fig:eta_R}.
+
+\begin{figure}[ht]
+	\begin{gnuplot}[terminal = pdf]
+		set table "tmp/eta_R_tmp.txt"
+		plot "txt/eta_R.txt" u (1/($1**2)):(1/($2**2))
+		unset table
+		
+		f(x) = k*x + b
+		fit f(x) "tmp/eta_R_tmp.txt" u 1:2 via k,b
+		
+		set print "tmp/eta_R_fit_tmp.txt"
+		print sprintf("k= %f ± %f", k, k_err)
+		print sprintf("b= %f ± %f", b, b_err)
+		set print
+		
+		set xl "1/R^2, ×10^{-5} 1/Ом^2"
+		set format x "%.1f"
+		set yl "1/Θ^2"
+		set format y "%.1f"
+		set grid
+		unset key
+		
+		plot "txt/eta_R.txt" u (1/($1**2)*(10**5)):(1/($2**2)):(1/($1**2)*(10**5)*($3/$1)):(1/($2**2)*($4/$2)) w xye pt 0, f(x)*(10**(-5)) + b lw 2 lc "red"
+		
+	\end{gnuplot}
+	\vspace{-40pt}
+	\caption{Зависимость декремента затухания от сопротивления в контуре.}
+	\label{fig:eta_R}
+\end{figure}
+\FloatBarrier
+
+Из графика видно линейный вид полученного зависимости. Это означает, что коэффициент отношения постоянен и его можно найти. С помощью МНК было получено, что он равен $2261.4 \pm 35.5$. Добротность составила $6.98 \pm 0.16$ для 141 Ом и $1.904 \pm 0.044$ для 649 Ом.
+
+Также были получены АЧХ и ФЧХ колебательного контура. Для этого экспериментально определены зависимости амплитуд напряжения на конденсаторе и разности фаз от частоты генератора, представленные на рис. \ref{fig:U_nu} и \ref{fig:dphi_nu} соответственно.
+
+\begin{figure}[ht]
+	\begin{gnuplot}[terminal = pdf]
+		set table "tmp/U_nu_tmp1.txt"
+			plot "txt/dx_U_nu1.txt" u ($1/2240):($2/13.2)
+		unset table
+		
+		set table "tmp/U_nu_tmp2.txt"
+			plot "txt/dx_U_nu2.txt" u ($1/2090):($2/4.08)
+		unset table
+		
+		set xl "ν/ν_0"
+		set format x "%.2f"
+		set yl "U/U_0"
+		set yr [0.35:1.05]
+		set format y "%.1f"
+		set grid
+		
+		plot "tmp/U_nu_tmp1.txt" u 1:2 w lp lw 3 pt 7 ps 0.5 lc "purple" t "1", \
+		"tmp/U_nu_tmp2.txt" u 1:2 w lp lw 3 pt 7 ps 0.5 lc "orange" t "2", \
+		0.7 lw 1 lc "blue" not, \
+		'+' using (0.915):(0.7) w p pt 7 ps 0.5 lc "red" not, \
+		'+' using (1.071):(0.7) w p pt 7 ps 0.5 lc "red" not, \
+		'+' using (0.651):(0.7) w p pt 7 ps 0.5 lc "red" not, \
+		'+' using (1.253):(0.7) w p pt 7 ps 0.5 lc "red" not
+	\end{gnuplot}
+	\vspace{-40pt}
+	\caption{Зависимость амплитуд напряжения в контуре от частоты генератора. $U_0$ - значения при резонансной частоте $\nu_0$. График 1 - зависимость при сопротивлении 141 Ом, 2 - при 649 Ом, синим - $U/U_0 = 0.707$.}
+	\label{fig:U_nu}
+\end{figure}
+%\FloatBarrier
+
+Из графика \ref{fig:U_nu} было определено, что разница частот в точках, когда отношение напряжения к амплитудному напряжению равно $0.7$, составила $\Delta \nu/\nu_0 = 0.1560 \pm 0.004$ для 141 Ом и $\Delta \nu/\nu_0 = 0.602 \pm 0.014$ для 649 Ом. Добротность составила $6.41 \pm 0.15$ для 141 Ом и $1.661 \pm 0.038$ для 649 Ом.
+
+\begin{figure}[ht]
+	\begin{gnuplot}[terminal = pdf]
+		set table "tmp/dx_nu_tmp1.txt"
+		plot "txt/dx_U_nu1.txt" u ($1/2240):($3/(1/$1*1000)*2)
+		unset table
+		set table "tmp/dx_nu_tmp2.txt"
+		plot "txt/dx_U_nu2.txt" u ($1/2209):($3/(1/$1*1000)*2)
+		unset table
+		
+		set xl "ν/ν_0"
+		set format x "%.2f"
+		set yl "∆ϕ, π"
+		set yr [-1:0]
+		set ytics 0.25
+		set format y "%.2f"
+		set grid
+		
+		plot "tmp/dx_nu_tmp1.txt" u 1:($2-1) w lp lw 3 pt 7 ps 0.5 lc "purple" t "1", \
+		"tmp/dx_nu_tmp2.txt" u 1:($2-1) w lp lw 3 pt 7 ps 0.5 lc "orange" t "2", \
+		-0.25 lw 1 lc "blue" not, \
+		-0.75 lw 1 lc "blue" not, \
+		'+' using (0.94):(-0.75) w p pt 7 ps 0.5 lc "red" not, \
+		'+' using (1.066):(-0.25) w p pt 7 ps 0.5 lc "red" not, \
+		'+' using (0.818):(-0.75) w p pt 7 ps 0.5 lc "red" not, \
+		'+' using (1.32):(-0.25) w p pt 7 ps 0.5 lc "red" not
+	\end{gnuplot}
+	\vspace{-30pt}
+	\caption{Зависимость разности фаз в контуре от частоты генератора. График 1 - зависимость при сопротивлении 141 Ом, 2 - при 649 Ом, синим - $\Delta \phi = -\frac{3\pi}{4}$ и $\Delta \phi = -\frac{\pi}{4}$.}
+	\label{fig:dphi_nu}
+\end{figure}
+%\FloatBarrier
+
+Из графика \ref{fig:dphi_nu} было определено, что разница частот в точках, когда разность фаз равна $-\frac{3\pi}{4}$ и $-\frac{\pi}{4}$, составила $\Delta \nu = 0.1260 \pm 0.003$ для 141 Ом и $\Delta \nu/\nu_0 = 0.502 \pm 0.011$ для 649 Ом. Добротность составила $7.937 \pm 0.19$ для 141 Ом и $1.992 \pm 0.046$ для 649 Ом.
+\FloatBarrier
