@@ -1,5 +1,87 @@
 \chapter{Результаты}
 \label{ch:results}
 
+\begin{figure}[ht]
+    \begin{gnuplot}[terminal=pdf]
+        set xl "U, В"
 
+        set yl "I, мА"
+        set yr [0:4.5]
+        set format y "%.1f"
+
+        unset key
+        set grid
+
+        f(x) = k*x + b
+        fit f(x) "txt/I_Uh.txt" u 1:2 via k,b
+
+        set style line 1 pt 7 ps 0.5 lw 2
+        plot "txt/I_Uh.txt" u 1:2:3:4 w xye pt 0, f(x) ls 1
+    \end{gnuplot}
+    \vspace{-20pt}
+    \caption{}
+    \label{fig:I_Uh}
+\end{figure}
+\FloatBarrier
+
+$k = -0.019 \pm 0.001$ \\
+$R = (52.6 \pm 2.7)$ кОм
+
+\begin{figure}[ht]
+    \begin{gnuplot}[terminal=pdf]
+        set xl "U, В"
+        set xr [-26:26]
+        
+        set yl "I, мкА"
+        set yr [-125:125]
+
+        set key t l
+        set grid
+
+        
+        set arrow 1 from graph 0, first 0 to graph 1, first 0 nohead lc "black"
+        set arrow 2 from first 0, graph 0 to first 0, graph 1 nohead lc "black"
+
+        f1_end(x) = k1_end*x + b1_end
+        fit f1_end(x) "txt/I_Ul_fit_end.txt" u 1:2 via k1_end,b1_end
+        f2_end(x) = k2_end*x + b2_end
+        fit f2_end(x) "txt/I_Ul_fit_end.txt" u 1:3 via k2_end,b2_end
+        f3_end(x) = k3_end*x + b3_end
+        fit f3_end(x) "txt/I_Ul_fit_end.txt" u 1:4 via k3_end,b3_end
+        
+        f1_0(x) = k1_0*x + b1_0
+        fit f1_0(x) "txt/I_Ul_fit_0.txt" u 1:2 via k1_0,b1_0
+        f2_0(x) = k2_0*x + b2_0
+        fit f2_0(x) "txt/I_Ul_fit_0.txt" u 1:3 via k2_0,b2_0
+        f3_0(x) = k3_0*x + b3_0
+        fit f3_0(x) "txt/I_Ul_fit_0.txt" u 1:4 via k3_0,b3_0
+
+        set style line 1 pt 7 ps 0.5 lw 2
+        plot "txt/I_Ul.txt" u 1:2 w lp ls 1 lc "dark-red" t "5 mA", \
+            "txt/I_Ul.txt" u 1:3 w lp ls 1 lc "dark-yellow" t "3 mA", \
+            "txt/I_Ul.txt" u 1:4 w lp ls 1 lc "dark-green" t "1.5 mA", \
+            f1_end(x) not, f2_end(x) not, f3_end(x) not, \
+            f1_0(x) not, f2_0(x) not, f3_0(x) not
+    \end{gnuplot}
+    \vspace{-20pt}
+    \caption{}
+    \label{fig:I_Uh}
+\end{figure}
+\FloatBarrier
+
+\begin{table}[ht]
+    \centering\begin{tabular}{|c|c|c|c|c|}
+        \hline
+        N & $I_{i\text{н}}$, мкА & $dI/dU$ & $kT_e$, эВ & $T_e$, $\times 10^3$ К \\
+        \hline
+        1 & $89.3 \pm 2.1$ & $8.3 \pm 0.7$ & $4.63 \pm 0.39$ & $54.6 \pm 4.6$ \\
+        \hline
+        2 & $45.7 \pm 2.1$ & $4.5 \pm 0.4$ & $4.52 \pm 0.40$ & $53.3 \pm 4.7$ \\
+        \hline
+        3 & $17.7 \pm 2.1$ & $2.5 \pm 0.3$ & $3.48 \pm 0.42$ & $41.1 \pm 4.9$ \\
+        \hline
+    \end{tabular}
+    \caption{}
+    \label{tab:N_I_dIdU}
+\end{table}
 
