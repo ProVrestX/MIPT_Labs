@@ -1,6 +1,11 @@
 \chapter{Результаты}
 \label{ch:results}
 
+
+Для определения необходимых зависимостей была использована установка, состоящая из источников высокого и назкого напряжения, вольт- и амперметров, а также газоразрядной трубки с зондами. Полное описание установки см. в Приложении.
+
+В результате была получена зависимость силы тока, проходящей через газоразрядную трубку, от напряжения на ней в диапазоне от 170 до 350 В. Полученное отношение представлено на рис. \ref{fig:I_Uh}.
+
 \begin{figure}[ht]
     \begin{gnuplot}[terminal=pdf]
         set xl "U, В"
@@ -18,27 +23,31 @@
         set style line 1 pt 7 ps 0.5 lw 2
         plot "txt/I_Uh.txt" u 1:2:3:4 w xye pt 0, f(x) ls 1
     \end{gnuplot}
-    \vspace{-20pt}
-    \caption{}
+    \vspace{-30pt}
+    \caption{Зависимость силы тока разряда от его напряжения.}
     \label{fig:I_Uh}
 \end{figure}
 \FloatBarrier
 
-$k = -0.019 \pm 0.001$ \\
-$R = (52.6 \pm 2.7)$ кОм
+По графику виднен линейный вид полученной зависимости. Из этого был сделан вывод, что коэффициент отношения постоянен и его можно найти. С помощью полученного значения было определено дифференциальное сопротивление разряда $R_\text{диф} = (52.6 \pm 2.8)$ кОм
+
+% $k = -0.019 \pm 0.001$ \\
+% $R = (52.6 \pm 2.8)$ кОм
+
+Далее были определены зондовые характеристики для сил тока разряда, равных 5, 3 и 1.5 мА. Зависимости представлены на рис. \ref{fig:I_Ul} соответственно силам тока.
 
 \begin{figure}[ht]
     \centering
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
         \begin{gnuplot}[terminal=pdf]
-            set xl "U, В"
+            set xl "U, В" font ",16"
             set xr [-26:26]
             
-            set yl "I, мкА"
+            set yl "I, мкА" font ",16"
             set yr [-125:125]
 
-            set key t l
+            set key b r
             set grid
 
             
@@ -62,13 +71,13 @@ $R = (52.6 \pm 2.7)$ кОм
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
         \begin{gnuplot}[terminal=pdf]
-            set xl "U, В"
+            set xl "U, В" font ",16"
             set xr [-26:26]
             
-            set yl "I, мкА"
+            set yl "I, мкА" font ",16"
             set yr [-125:125]
 
-            set key t l
+            set key b r
             set grid
 
             
@@ -92,13 +101,13 @@ $R = (52.6 \pm 2.7)$ кОм
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
         \begin{gnuplot}[terminal=pdf]
-            set xl "U, В"
+            set xl "U, В" font ",16"
             set xr [-26:26]
             
-            set yl "I, мкА"
+            set yl "I, мкА" font ",16"
             set yr [-125:125]
 
-            set key t l
+            set key b r
             set grid
 
             
@@ -120,44 +129,136 @@ $R = (52.6 \pm 2.7)$ кОм
     \end{subfigure}
 
     \vspace{-10pt}
-    \caption{}
+    \caption{Зондовые отношения сил тока от напряжения на них. Зависимости представлены для токов разряда 5, 3 и 1.5 мА на рис. а, б и в соответственно.}
     \label{fig:I_Ul}
 \end{figure}
 \FloatBarrier
 
+Из представленных графиков были определены ионные токи насыщения $I_{i\text{н}}$, а также наклоны $(dI/dU)_{U=0}$ зависимостей $I=f(U)$ в начале координат. Из этих характеристик для данных токов разряда были получены температуры электронов $T_e$ и их концентрации $n_e$, равные концентрациям ионов $n_i$. Рассчитанные значения представлены на рис. \ref{fig:Te_ne_Ip}.
+
+% \begin{table}[ht]
+%     \centering\begin{tabular}{|c|c|c|c|c|}
+%         \hline
+%         $I_\text{р}$, мА & $I_{i\text{н}}$, мкА & $dI/dU$ & $kT_e$, эВ & $T_e$, $\times 10^3$ К \\
+%         \hline
+%         5 & $89.3 \pm 2.1$ & $8.3 \pm 0.7$ & $4.6 \pm 0.4$ & $55 \pm 5$ \\
+%         \hline
+%         3 & $45.7 \pm 2.1$ & $4.5 \pm 0.4$ & $4.5 \pm 0.4$ & $53 \pm 5$ \\
+%         \hline
+%         1.5 & $17.7 \pm 2.1$ & $2.50 \pm 0.29$ & $3.5 \pm 0.4$ & $41 \pm 5$ \\
+%         \hline
+%     \end{tabular}
+%     \caption{}
+%     \label{tab:I_I_dIdU}
+% \end{table}
+% \FloatBarrier
+
+% \begin{table}[ht]
+%     \centering\begin{tabular}{|c|c|c|c|}
+%         \hline
+%         $I_\text{р}$, мА & $T_e$, $\times 10^3$ К & $n_e$, $10^{16}$ $\text{м}^{-3}$ & $\omega_p$, $10^{10}$ рад/с \\
+%         \hline
+%         5 & $55 \pm 5$ & $6.6 \pm 0.3$ & $1.44 \pm 0.03$ \\
+%         \hline
+%         3 & $53 \pm 5$ & $3.4 \pm 0.22$ & $1.03 \pm 0.03$ \\
+%         \hline
+%         1.5 & $41 \pm 5$ & $1.52 \pm 0.19$ & $0.69 \pm 0.04$ \\
+%         \hline
+%     \end{tabular}
+%     \caption{}
+%     \label{tab:I_Te_ne_wp}
+% \end{table}
+% \FloatBarrier
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \begin{gnuplot}[terminal=pdf]
+            set xl "I_p, мА" font ",16"
+            set xr [0:5.5]
+            
+            set yl "T_e, 10^3 К" font ",16"
+            # set yr [-125:125]
+
+            set key t l
+            set grid
+
+            set style line 1 pt 7 ps 0.5 lw 2
+            set style line 2 pt 0 lw 2
+            plot "txt/Te_Ip.txt" u 1:2 w lp ls 1 not, "txt/Te_Ip.txt" u 1:2:3:4 w xye ls 2 not
+        \end{gnuplot}
+        \vspace{-30pt}
+        \caption{}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \begin{gnuplot}[terminal=pdf]
+            set xl "I_p, мА" font ",16"
+            set xr [0:5.5]
+            
+            set yl "n_e, 10^{16} м^{-3}" font ",16"
+            # set yr [-125:125]
+
+            set key t l
+            set grid
+
+            set style line 1 pt 7 ps 0.5 lw 2
+            set style line 2 pt 0 lw 2
+            plot "txt/ne_Ip.txt" u 1:2 w lp ls 1 not, "txt/ne_Ip.txt" u 1:2:3:4 w xye ls 2 not
+        \end{gnuplot}
+        \vspace{-30pt}
+        \caption{}
+    \end{subfigure}
+
+    \vspace{-10pt}
+    \caption{Зависимости температуры электронов (рис. а) и их концентрации (рис. б) от силы тока разряда.}
+    \label{fig:Te_ne_Ip}
+\end{figure}
+\FloatBarrier
+
+Из графиков видна прямая пропорциональность полученных зависимостей. Из этого было определено, что с ростом силы тока температура и концентрация электронов в разряде тоже повышаются.
+
+С помощью полученных значений, также были определены электронные поляризационные длины $r_{D_e}$ и дебаевские радиусы экранирования $r_D$, представленные в таб. \ref{tab:I_rDe_rD}
+
+% \begin{table}[ht]
+%     \centering\begin{tabular}{|c|c|c|c|c|c|}
+%         \hline
+%         $I_p$, мА & $T_e$, $10^3$ К & $n_e$, $10^{16}$ $\text{м}^{-3}$ & $\omega_p$, $10^{10}$ рад/с  & $r_{D_e}$, $10^{-5}$ м & $r_D$, $10^{-6}$ м \\
+%         \hline
+%         5 & $55 \pm 5$ & $6.6 \pm 0.3$ & $1.44 \pm 0.03$ & $6.3 \pm 0.3$ & $4.65 \pm 0.11$ \\
+%         \hline
+%         3 & $53 \pm 5$ & $3.4 \pm 0.22$ & $1.03 \pm 0.03$ & $8.6 \pm 0.5$ & $6.49 \pm 0.19$ \\
+%         \hline
+%         1.5 & $41 \pm 5$ & $1.52 \pm 0.19$ & $0.69 \pm 0.04$ & $11.4 \pm 1.0$ & $9.8 \pm 0.6$ \\
+%         \hline
+%     \end{tabular}
+%     \caption{}
+%     \label{tab:I_T_ne}
+% \end{table}
+% \FloatBarrier
+
 \begin{table}[ht]
-    \centering\begin{tabular}{|c|c|c|c|c|}
+    \centering\begin{tabular}{|c|c|c|}
         \hline
-        $I_\text{р}$, мА & $I_{i\text{н}}$, мкА & $dI/dU$ & $kT_e$, эВ & $T_e$, $\times 10^3$ К \\
+        $I_p$, мА & $r_{D_e}$, $10^{-5}$ м & $r_D$, $10^{-6}$ м \\
         \hline
-        5 & $89.3 \pm 2.1$ & $8.3 \pm 0.7$ & $4.6 \pm 0.4$ & $55 \pm 5$ \\
+        5 & $6.3 \pm 0.3$ & $4.65 \pm 0.11$ \\
         \hline
-        3 & $45.7 \pm 2.1$ & $4.5 \pm 0.4$ & $4.5 \pm 0.4$ & $53 \pm 5$ \\
+        3 & $8.6 \pm 0.5$ & $6.49 \pm 0.19$ \\
         \hline
-        1.5 & $17.7 \pm 2.1$ & $2.50 \pm 0.29$ & $3.5 \pm 0.4$ & $41 \pm 5$ \\
+        1.5 & $11.4 \pm 1.0$ & $9.8 \pm 0.6$ \\
         \hline
     \end{tabular}
-    \caption{}
-    \label{tab:I_I_dIdU}
+    \caption{Значения электронных поляризационных длин и дебаевских радиусов экранирования при разных токах разряда.}
+    \label{tab:I_rDe_rD}
 \end{table}
 \FloatBarrier
 
-\begin{table}[ht]
-    \centering\begin{tabular}{|c|c|c|c|c|c|}
-        \hline
-        $I_p$, мА & $T_e$, $10^3$ К & $n_e$, $10^{16}$ $\text{м}^{-3}$ & $\omega_p$, $10^{10}$ рад/с  & $r_{D_e}$, $10^{-5}$ м & $r_D$, $10^{-6}$ м \\
-        \hline
-        5 & $55 \pm 5$ & $6.6 \pm 0.3$ & $1.44 \pm 0.03$ & $6.3 \pm 0.3$ & $4.65 \pm 0.11$ \\
-        \hline
-        3 & $53 \pm 5$ & $3.4 \pm 0.22$ & $1.03 \pm 0.03$ & $8.6 \pm 0.5$ & $6.49 \pm 0.19$ \\
-        \hline
-        1.5 & $41 \pm 5$ & $1.52 \pm 0.19$ & $0.69 \pm 0.04$ & $11.4 \pm 1.0$ & $9.8 \pm 0.6$ \\
-        \hline
-    \end{tabular}
-    \caption{}
-    \label{tab:I_T_ne}
-\end{table}
-\FloatBarrier
+Линейные размеры трубки, очевидно, сильно превышают поляризационные длины. Из этого был сделан вывод о квазинейтральности плазмы при всех используемых в работе токах разряда.
+
+В конце были рассчитаны средние числа ионов $N_D$ в дебаевской сфере и степени ионизации плазмы $\alpha$, которые представлены в таб. \ref{tab:I_ND_a}.
 
 \begin{table}[ht]
     \centering\begin{tabular}{|c|c|c|}
@@ -171,61 +272,12 @@ $R = (52.6 \pm 2.7)$ кОм
         1.5 & $58 \pm 12$ & $2.36 \pm 0.28$ \\
         \hline
     \end{tabular}
-    \caption{}
-    \label{tab:I_N_a}
+    \caption{Среднее число ионов в дебаевской сфере и степень ионизации плазмы в зависимости от силы тока разряда.}
+    \label{tab:I_ND_a}
 \end{table}
 \FloatBarrier
 
-$n = \frac{P}{kT_i} = 6.44 \times 10^{22}$ $\text{м}^{-3}$
+Число Дебая $N_D$ оказалось значительно больше 1. Это означает, что в данных случаях плазму можно рассматривать как идеальный газ.
 
-\begin{figure}[ht]
-    \centering
-    \begin{subfigure}[t]{0.48\linewidth}
-        \centering
-        \begin{gnuplot}[terminal=pdf]
-            set xl "I_p, мА"
-            set xr [0:5.5]
-            
-            set yl "T_e, 10^3 К"
-            # set yr [-125:125]
+% $n = \frac{P}{kT_i} = 6.44 \times 10^{22}$ $\text{м}^{-3}$
 
-            set key t l
-            set grid
-
-            set style line 1 pt 7 ps 0.5 lw 2
-            set style line 2 pt 0 lw 2
-            plot "txt/Te_Ip.txt" u 1:2 w lp ls 1 not, "txt/Te_Ip.txt" u 1:2:3:4 w xye ls 2 not
-        \end{gnuplot}
-        \vspace{-30pt}
-        \caption{}
-        \label{fig:Te_Ip}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\linewidth}
-        \centering
-        \begin{gnuplot}[terminal=pdf]
-            set xl "I_p, мА"
-            set xr [0:5.5]
-            
-            set yl "n_e, 10^{16} м^{-3}"
-            # set yr [-125:125]
-
-            set key t l
-            set grid
-
-            set style line 1 pt 7 ps 0.5 lw 2
-            set style line 2 pt 0 lw 2
-            plot "txt/ne_Ip.txt" u 1:2 w lp ls 1 not, "txt/ne_Ip.txt" u 1:2:3:4 w xye ls 2 not
-        \end{gnuplot}
-        \vspace{-30pt}
-        \caption{}
-        \label{fig:ne_Ip}
-    \end{subfigure}
-
-    \vspace{-10pt}
-    \caption{}
-    \label{fig:Te_ne_Ip}
-\end{figure}
-\FloatBarrier
-
-\vfill
