@@ -28,60 +28,204 @@ $k = -0.019 \pm 0.001$ \\
 $R = (52.6 \pm 2.7)$ кОм
 
 \begin{figure}[ht]
-    \begin{gnuplot}[terminal=pdf]
-        set xl "U, В"
-        set xr [-26:26]
-        
-        set yl "I, мкА"
-        set yr [-125:125]
+    \centering
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \begin{gnuplot}[terminal=pdf]
+            set xl "U, В"
+            set xr [-26:26]
+            
+            set yl "I, мкА"
+            set yr [-125:125]
 
-        set key t l
-        set grid
+            set key t l
+            set grid
 
-        
-        set arrow 1 from graph 0, first 0 to graph 1, first 0 nohead lc "black"
-        set arrow 2 from first 0, graph 0 to first 0, graph 1 nohead lc "black"
+            
+            set arrow 1 from graph 0, first 0 to graph 1, first 0 nohead lc "black"
+            set arrow 2 from first 0, graph 0 to first 0, graph 1 nohead lc "black"
 
-        f1_end(x) = k1_end*x + b1_end
-        fit f1_end(x) "txt/I_Ul_fit_end.txt" u 1:2 via k1_end,b1_end
-        f2_end(x) = k2_end*x + b2_end
-        fit f2_end(x) "txt/I_Ul_fit_end.txt" u 1:3 via k2_end,b2_end
-        f3_end(x) = k3_end*x + b3_end
-        fit f3_end(x) "txt/I_Ul_fit_end.txt" u 1:4 via k3_end,b3_end
-        
-        f1_0(x) = k1_0*x + b1_0
-        fit f1_0(x) "txt/I_Ul_fit_0.txt" u 1:2 via k1_0,b1_0
-        f2_0(x) = k2_0*x + b2_0
-        fit f2_0(x) "txt/I_Ul_fit_0.txt" u 1:3 via k2_0,b2_0
-        f3_0(x) = k3_0*x + b3_0
-        fit f3_0(x) "txt/I_Ul_fit_0.txt" u 1:4 via k3_0,b3_0
+            f_end(x) = k_end*x + b_end
+            fit f_end(x) "txt/I_Ul_fit_end.txt" u 1:2 via k_end,b_end
+            
+            f_0(x) = k_0*x + b_0
+            fit f_0(x) "txt/I_Ul_fit_0.txt" u 1:2 via k_0,b_0
 
-        set style line 1 pt 7 ps 0.5 lw 2
-        plot "txt/I_Ul.txt" u 1:2 w lp ls 1 lc "dark-red" t "5 mA", \
-            "txt/I_Ul.txt" u 1:3 w lp ls 1 lc "dark-yellow" t "3 mA", \
-            "txt/I_Ul.txt" u 1:4 w lp ls 1 lc "dark-green" t "1.5 mA", \
-            f1_end(x) not, f2_end(x) not, f3_end(x) not, \
-            f1_0(x) not, f2_0(x) not, f3_0(x) not
-    \end{gnuplot}
-    \vspace{-20pt}
+            set style line 1 pt 7 ps 0.5 lw 2
+            plot "txt/I_Ul.txt" u 1:2 w lp ls 1 lc "dark-red" t "5 mA", \
+                f_end(x) not, f_0(x) not
+        \end{gnuplot}
+        \vspace{-30pt}
+        \caption{}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \begin{gnuplot}[terminal=pdf]
+            set xl "U, В"
+            set xr [-26:26]
+            
+            set yl "I, мкА"
+            set yr [-125:125]
+
+            set key t l
+            set grid
+
+            
+            set arrow 1 from graph 0, first 0 to graph 1, first 0 nohead lc "black"
+            set arrow 2 from first 0, graph 0 to first 0, graph 1 nohead lc "black"
+
+            f_end(x) = k_end*x + b_end
+            fit f_end(x) "txt/I_Ul_fit_end.txt" u 1:3 via k_end,b_end
+            
+            f_0(x) = k_0*x + b_0
+            fit f_0(x) "txt/I_Ul_fit_0.txt" u 1:3 via k_0,b_0
+
+            set style line 1 pt 7 ps 0.5 lw 2
+            plot "txt/I_Ul.txt" u 1:3 w lp ls 1 lc "dark-yellow" t "3 mA", \
+                f_end(x) not, f_0(x) not
+        \end{gnuplot}
+        \vspace{-30pt}
+        \caption{}
+    \end{subfigure}
+
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \begin{gnuplot}[terminal=pdf]
+            set xl "U, В"
+            set xr [-26:26]
+            
+            set yl "I, мкА"
+            set yr [-125:125]
+
+            set key t l
+            set grid
+
+            
+            set arrow 1 from graph 0, first 0 to graph 1, first 0 nohead lc "black"
+            set arrow 2 from first 0, graph 0 to first 0, graph 1 nohead lc "black"
+
+            f_end(x) = k_end*x + b_end
+            fit f_end(x) "txt/I_Ul_fit_end.txt" u 1:4 via k_end,b_end
+            
+            f_0(x) = k_0*x + b_0
+            fit f_0(x) "txt/I_Ul_fit_0.txt" u 1:4 via k_0,b_0
+
+            set style line 1 pt 7 ps 0.5 lw 2
+            plot "txt/I_Ul.txt" u 1:4 w lp ls 1 lc "dark-green" t "1.5 mA", \
+                f_end(x) not, f_0(x) not
+        \end{gnuplot}
+        \vspace{-30pt}
+        \caption{}
+    \end{subfigure}
+
+    \vspace{-10pt}
     \caption{}
-    \label{fig:I_Uh}
+    \label{fig:I_Ul}
 \end{figure}
 \FloatBarrier
 
 \begin{table}[ht]
     \centering\begin{tabular}{|c|c|c|c|c|}
         \hline
-        N & $I_{i\text{н}}$, мкА & $dI/dU$ & $kT_e$, эВ & $T_e$, $\times 10^3$ К \\
+        $I_\text{р}$, мА & $I_{i\text{н}}$, мкА & $dI/dU$ & $kT_e$, эВ & $T_e$, $\times 10^3$ К \\
         \hline
-        1 & $89.3 \pm 2.1$ & $8.3 \pm 0.7$ & $4.63 \pm 0.39$ & $54.6 \pm 4.6$ \\
+        5 & $89.3 \pm 2.1$ & $8.3 \pm 0.7$ & $4.6 \pm 0.4$ & $55 \pm 5$ \\
         \hline
-        2 & $45.7 \pm 2.1$ & $4.5 \pm 0.4$ & $4.52 \pm 0.40$ & $53.3 \pm 4.7$ \\
+        3 & $45.7 \pm 2.1$ & $4.5 \pm 0.4$ & $4.5 \pm 0.4$ & $53 \pm 5$ \\
         \hline
-        3 & $17.7 \pm 2.1$ & $2.5 \pm 0.3$ & $3.48 \pm 0.42$ & $41.1 \pm 4.9$ \\
+        1.5 & $17.7 \pm 2.1$ & $2.50 \pm 0.29$ & $3.5 \pm 0.4$ & $41 \pm 5$ \\
         \hline
     \end{tabular}
     \caption{}
-    \label{tab:N_I_dIdU}
+    \label{tab:I_I_dIdU}
 \end{table}
+\FloatBarrier
 
+\begin{table}[ht]
+    \centering\begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        $I_p$, мА & $T_e$, $10^3$ К & $n_e$, $10^{16}$ $\text{м}^{-3}$ & $\omega_p$, $10^{10}$ рад/с  & $r_{D_e}$, $10^{-5}$ м & $r_D$, $10^{-6}$ м \\
+        \hline
+        5 & $55 \pm 5$ & $6.6 \pm 0.3$ & $1.44 \pm 0.03$ & $6.3 \pm 0.3$ & $4.65 \pm 0.11$ \\
+        \hline
+        3 & $53 \pm 5$ & $3.4 \pm 0.22$ & $1.03 \pm 0.03$ & $8.6 \pm 0.5$ & $6.49 \pm 0.19$ \\
+        \hline
+        1.5 & $41 \pm 5$ & $1.52 \pm 0.19$ & $0.69 \pm 0.04$ & $11.4 \pm 1.0$ & $9.8 \pm 0.6$ \\
+        \hline
+    \end{tabular}
+    \caption{}
+    \label{tab:I_T_ne}
+\end{table}
+\FloatBarrier
+
+\begin{table}[ht]
+    \centering\begin{tabular}{|c|c|c|}
+        \hline
+        $I_p$, мА & $N_D$ & $\alpha$, $10^{-7}$ \\
+        \hline
+        5 & $28.2 \pm 2.3$ & $10.3 \pm 0.5$ \\
+        \hline
+        3 & $39 \pm 4$ & $5.3 \pm 0.3$ \\
+        \hline
+        1.5 & $58 \pm 12$ & $2.36 \pm 0.28$ \\
+        \hline
+    \end{tabular}
+    \caption{}
+    \label{tab:I_N_a}
+\end{table}
+\FloatBarrier
+
+$n = \frac{P}{kT_i} = 6.44 \times 10^{22}$ $\text{м}^{-3}$
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \begin{gnuplot}[terminal=pdf]
+            set xl "I_p, мА"
+            set xr [0:5.5]
+            
+            set yl "T_e, 10^3 К"
+            # set yr [-125:125]
+
+            set key t l
+            set grid
+
+            set style line 1 pt 7 ps 0.5 lw 2
+            set style line 2 pt 0 lw 2
+            plot "txt/Te_Ip.txt" u 1:2 w lp ls 1 not, "txt/Te_Ip.txt" u 1:2:3:4 w xye ls 2 not
+        \end{gnuplot}
+        \vspace{-30pt}
+        \caption{}
+        \label{fig:Te_Ip}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \begin{gnuplot}[terminal=pdf]
+            set xl "I_p, мА"
+            set xr [0:5.5]
+            
+            set yl "n_e, 10^{16} м^{-3}"
+            # set yr [-125:125]
+
+            set key t l
+            set grid
+
+            set style line 1 pt 7 ps 0.5 lw 2
+            set style line 2 pt 0 lw 2
+            plot "txt/ne_Ip.txt" u 1:2 w lp ls 1 not, "txt/ne_Ip.txt" u 1:2:3:4 w xye ls 2 not
+        \end{gnuplot}
+        \vspace{-30pt}
+        \caption{}
+        \label{fig:ne_Ip}
+    \end{subfigure}
+
+    \vspace{-10pt}
+    \caption{}
+    \label{fig:Te_ne_Ip}
+\end{figure}
+\FloatBarrier
+
+\vfill
