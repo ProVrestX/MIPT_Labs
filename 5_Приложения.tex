@@ -1,3 +1,39 @@
 \chapter{Приложения}
 \label{ch:appendix}
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./img/Магнит.png}
+    \caption{Схема установки}
+    \label{fig:magnit}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./img/Образец.png}
+    \caption{Схема установки}
+    \label{fig:obr}
+\end{figure}
+
+\begin{figure}[ht]
+    \begin{gnuplot}[terminal=pdf]
+        set xl "I, А"
+        set xr [0:1.6]
+        set format x "%.1f
+
+        set yl "B, Тл"
+
+        unset key
+        set grid
+
+        f(x) = k*x + b
+        fit f(x) "txt/B(I).txt" u 1:($2-0.0267) via k,b
+
+        set style line 1 pt 7 ps 0.5 lw 2
+        plot "txt/B(I).txt" u 1:($2-0.0267):3:4 w xye pt 0 lc "red", f(x) ls 1
+    \end{gnuplot}
+    \vspace{-30pt}
+    \caption{Зависимость индукции магнитного поля электромагнита от силы тока на нем.}
+    \label{fig:B(I)}
+\end{figure}
+\FloatBarrier
