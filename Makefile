@@ -14,6 +14,10 @@ git:
 push: git
 	git push -u origin
 
+.PHONY: bib
+bib: 
+	biber _main
+	
 .PHONY: clean
 clean:
 	@rm -rf tmp

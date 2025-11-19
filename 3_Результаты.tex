@@ -2,4 +2,95 @@
 \label{ch:results}
 
 
+\begin{figure}[ht]
+    \begin{gnuplot}[terminal=pdf]
+        set xl "I, А"
+        set xr [0:1.6]
+        set format x "%.1f
 
+        set yl "B, Тл"
+
+        unset key
+        set grid
+
+        f(x) = k*x + b
+        fit f(x) "txt/B(I).txt" u 1:($2-0.0267) via k,b
+
+        set style line 1 pt 7 ps 0.5 lw 2
+        plot "txt/B(I).txt" u 1:($2-0.0267):3:4 w xye pt 0 lc "red", f(x) ls 1
+    \end{gnuplot}
+    \vspace{-30pt}
+    \caption{Зависимость индукции магнитного поля электромагнита от силы тока на нем.}
+    \label{fig:B(I)}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[ht]
+    \begin{gnuplot}[terminal=pdf]
+        set xl "B, Тл"
+
+        set yl "E, мВ"
+        # set yr [0:4.5]
+
+        set key t l
+        set key title "I_{обр}, мА"
+        set grid
+
+        f1(x) = k1*x + b1
+        fit f1(x) "txt/V(B).txt" u ($1-0.0267):($2-0.15) via k1,b1
+        f2(x) = k2*x + b2
+        fit f2(x) "txt/V(B).txt" u ($1-0.0267):($3-0.22) via k2,b2
+        f3(x) = k3*x + b3
+        fit f3(x) "txt/V(B).txt" u ($1-0.0267):($4-0.28) via k3,b3
+        f4(x) = k4*x + b4
+        fit f4(x) "txt/V(B).txt" u ($1-0.0267):($5-0.36) via k4,b4
+        f5(x) = k5*x + b5
+        fit f5(x) "txt/V(B).txt" u ($1-0.0267):($6-0.40) via k5,b5
+        f6(x) = k6*x + b6
+        fit f6(x) "txt/V(B).txt" u ($1-0.0267):($7-0.49) via k6,b6
+
+        plot "txt/V(B).txt" u ($1-0.0267):($2-0.15):(0.013):(0.1) w xye pt 0 not, \
+            "txt/V(B).txt" u ($1-0.0267):($3-0.22):(0.013):(0.1) w xye pt 0 not, \
+            "txt/V(B).txt" u ($1-0.0267):($4-0.28):(0.013):(0.1) w xye pt 0 not, \
+            "txt/V(B).txt" u ($1-0.0267):($5-0.36):(0.013):(0.1) w xye pt 0 not, \
+            "txt/V(B).txt" u ($1-0.0267):($6-0.40):(0.013):(0.1) w xye pt 0 not, \
+            "txt/V(B).txt" u ($1-0.0267):($7-0.49):(0.013):(0.1) w xye pt 0 not, \
+            f1(x) lw 2 t "0.30", f2(x) lw 2 t "0.43", \
+            f3(x) lw 2 t "0.56", f4(x)  lw 2 t "0.69", \
+            f5(x) lw 2 t "0.82", f6(x) lw 2 t "0.95"
+    \end{gnuplot}
+    \vspace{-30pt}
+    \caption{Значения ЭДС Холла в образце в зависимости от индукции магнитного поля электромагнита. Значения представлены для 6 различных токах, протекающих через образец.}
+    \label{fig:V(B)}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[ht]
+    \begin{gnuplot}[terminal=pdf]
+        set xl "I, мА"
+        set format x "%.1f
+
+        set yl "K, мВ/Тл"
+
+        unset key
+        set grid
+
+        f(x) = k*x + b
+        fit f(x) "txt/K(I).txt" u 1:2 via k,b
+
+        set style line 1 pt 7 ps 0.5 lw 2
+        plot "txt/K(I).txt" u 1:2:3:4 w xye pt 0 lc "red", f(x) ls 1
+    \end{gnuplot}
+    \vspace{-30pt}
+    \caption{Зависимость углового воэффициента $K = \Delta E / \Delta B$ от силы тока на нем.}
+    \label{fig:K(I)}
+\end{figure}
+\FloatBarrier
+
+$R_x = a*k = (2.50 \pm 0.05) \ 10^{-2} \text{м}^{3}/\text{Кл}$
+
+$n = (2.50 \pm 0.05) \ 10^{20} \text{м}^{-3}$
+
+$\sigma = (5.5 \pm 0.3) \frac{1}{\text{Ом} \cdot \text{м}}$
+
+$\mu = (1380 \pm 80) \frac{\text{см}^{2}}{\text{В} \cdot \text{с}}$
