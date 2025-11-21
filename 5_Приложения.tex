@@ -26,11 +26,11 @@
         unset key
         set grid
 
-        f(x) = k*x + b
-        fit f(x) "txt/B(I).txt" u 1:($2-0.0267) via k,b
+        # f(x) = k*x + b
+        # fit f(x) "txt/B(I).txt" u 1:($2-0.0267) via k,b
 
         set style line 1 pt 7 ps 0.5 lw 2
-        plot "txt/B(I).txt" u 1:($2-0.0267):3:4 w xye pt 0 lc "red", f(x) ls 1
+        plot "txt/B(I).txt" u 1:($2-0.0267) w lp ls 1 lc "red"
     \end{gnuplot}
     \vspace{-30pt}
     \caption{Зависимость индукции магнитного поля электромагнита от силы тока на нем.}
