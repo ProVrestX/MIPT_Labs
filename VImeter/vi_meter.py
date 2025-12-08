@@ -30,7 +30,7 @@ def getId(device):
     write_cmd("*IDN?", device)
     sleep(0.01)
     id = read_cmd(device)
-    print(f"File: {device} - {id}")
+    # print(f"File: {device} - {id}")
 
     return id
 
@@ -43,8 +43,8 @@ class VI_meter:
     device = ""
 
     def init(self, mode):
-        for device in glob.glob("/dev/usbtmc*"):
-            if getId(device) == id:
+        for device in getMeters():
+            if getId(device) == self.id:
                 self.device = device
                 break
         

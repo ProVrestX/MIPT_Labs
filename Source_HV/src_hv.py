@@ -39,7 +39,7 @@ class HV_source:
     ser = None
 
     def init(self):
-        if not (self.port in listAvailablePorts()):
+        if not (self.port in (port.device for port in listAvailablePorts())):
             print(f"COM-порт {self.port} не найден")
             return 1
 
