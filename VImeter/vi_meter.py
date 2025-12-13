@@ -39,6 +39,11 @@ class VI_meter:
     def __init__(self, id):
         self.id = id
         
+    def __del__(self):
+        if self.device == "":
+            return
+        self.reset()
+        
     id = ""
     device = ""
 

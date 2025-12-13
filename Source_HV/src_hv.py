@@ -36,6 +36,11 @@ class HV_source:
         self.port = port
         self.ser = Serial(port, 38400)
 
+    def __del__(self):
+        if not self.ser.checkPortState():
+            return
+        self.deInit()
+    
     ser = None
 
     def init(self):
@@ -87,5 +92,57 @@ class HV_source:
         I //= Ki
 
         return [V, I]
+    
+    def stepToCur(self, curr_target, file = None, V1 = None, A1 = None):
+        if file != None and (V1 == None or A1 == None):
+            print("No meters")
+            return
+        
+        volt_cur, curr_cur = self.read()
+
+        print(f"Step to {curr_target} uA")
+        print(f"Current V: {volt_cur} V, I: {curr_cur} uA\n")
+
+        k = 30
+        if curr_target < curr_cur:
+            k *= -1
+        
+        sleep(0.5)
+        cur_prev = curr_cur
+
+        while (curr_target < curr_src) == (k < 0):
+            volt_cur += k
+            self.set(volt_cur, 5000)
+            sleep(0.3)
+            volt_src, curr_src = self.read()
+
+            if abs(curr_src-cur_prev) > 300:
+                read_tmp = 0
+                volt_src, curr_src = 0, 0
+                sleep(1)
+                for i in range(10):
+                    read_tmp = self.read()
+                    volt_src += read_tmp[0]
+                    curr_src += read_tmp[1]
+                    sleep(0.1)
+                curr_src /= 10
+                volt_src /= 10
+
+            cur_prev = curr_src
+            print(f"V: {volt_src} V, I: {curr_src} uA")
+
+            if file != None:
+                sleep(0.2)
+                V1.writeCommand("READ?")
+                A1.writeCommand("READ?")
+                volt_rd = V1.readCommand()*10
+                cur_rd = A1.readCommand()*1000
+                print(f"read V: {volt_rd} V, I: {cur_rd} mA")
+                file.write(f"{volt_rd}\t{cur_rd}\n")
+
+            print()
+
+        print("End step\n")
+        return [volt_src, curr_src]
 
 

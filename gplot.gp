@@ -2,6 +2,7 @@ set terminal png size 800,600
 
 set xl "U, В"
 set yl "I, мА"
+set yr [0:5]
 set grid
 
 set output "plot.png"
