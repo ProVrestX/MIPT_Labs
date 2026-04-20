@@ -1,0 +1,64 @@
+\chapter{Методика} \vspace{-20pt}
+\label{ch:methods}
+
+В основе работы лежат законы геометрической оптики, упрощающие описывание распространение света в параксиальном приближении. Для тонкой линзы связь между расстоянием $a$ от предмета до линзы, расстоянием $b$ от линзы до изображения и фокусным расстоянием $f$ можно задать известной формулой:
+\begin{equation} \label{equ:thin_lens}
+    \frac{1}{f} = \frac{1}{a} + \frac{1}{b} \ .
+\end{equation}
+
+Если настроить линзу на четкое изображение на бесконечности, расстояние между предметом и линзой окажется фокусным расстоянием.
+
+\section*{Определение фокусов} \vspace{-15pt}
+
+Для повышения точности измерений используется \textit{метод Бесселя}: при фиксированном расстоянии $L$ между предметом и экраном линза имеет два положения с чётким изображением — увеличенным и уменьшенным (рис. \ref{fig:bessel}). Расстояние $l$ между этими положениями связано с фокусным расстоянием соотношением \eqref{equ:bessel}, следующим из \eqref{equ:thin_lens}.
+\begin{equation} \label{equ:bessel}
+    f \approx \frac{L^2 - l^2}{4L} \ .
+\end{equation}
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[ht]{0.4\linewidth}
+        \includegraphics{./img/бессель.eps}
+        \caption{}
+        \label{fig:bessel}
+    \end{subfigure}
+    \begin{subfigure}[ht]{0.55\linewidth}
+        \includegraphics{./img/аббе.eps}
+        \caption{}
+        \label{fig:abbe}
+    \end{subfigure}
+    \caption{Методы Бесселя и Аббе на рисунках (а) и (б) соответственно.}
+\end{figure}
+
+Альтернативный \textit{метод Аббе} основан на измерении изменений $\Delta x$ и $\Delta x'$ положения предмета и изображения соответственно при неизменном положении линзы (рис. \ref{fig:abbe}). Если $y_0$ — размер предмета, $y_1$ и $y_2$ — размеры двух полученных изображений, то фокусное расстояние определяется формулами \eqref{equ:abbe}.
+\begin{equation} \label{equ:abbe}
+    f = \frac{\Delta x'}{\frac{y_1}{y_0} - \frac{y_2}{y_0}} \quad \text{или} \quad
+    f = \frac{\Delta x}{\frac{y_0}{y_2} - \frac{y_0}{y_1}} \ .
+\end{equation}
+
+
+\section*{Оптические приборы} \vspace{-15pt}
+
+Угловое увеличение \textit{телескопа} определяется отношением \eqref{equ:telescope} фокусных расстояний $f_{\text{об}}$ объектива и $f_{\text{ок}}$ окуляра.
+\begin{equation} \label{equ:telescope}
+    |\gamma| = \left| \frac{f_{\text{об}}}{f_{\text{ок}}} \right| \ .
+\end{equation}
+Увеличение также можно измерить экспериментально, сравнив угловые размеры $\alpha_0$ определенного объекта без телескопа и $\alpha$ с телескопом: $\gamma_{\text{эксп}} = \alpha / \alpha_0$.
+
+Угловое увеличение \textit{микроскопа} зависит от оптического интервала $\Delta$ и режима наблюдения. При аккомодации глаза на бесконечность выполняется известное$^\text{\cite{Lab}}$ отношение:
+\begin{equation} \label{equ:micro_inf}
+    |\gamma_{\infty}| = \frac{\Delta}{f_{\text{об}}} \cdot \frac{L_{\text{зр}}}{f_{\text{ок}}} \ ,
+\end{equation}
+где $L_{\text{зр}} \approx 25$~см — расстояние наилучшего зрения. 
+
+При аккомодации на $L_{\text{зр}}$ верна$^\text{\cite{Lab}}$ формула
+\begin{equation} \label{equ:micro_near}
+    |\gamma_{\text{зр}}| = \frac{\Delta}{f_{\text{об}}} \cdot \frac{L_{\text{зр}} + f_{\text{ок}}}{f_{\text{ок}}} \ .
+\end{equation}
+
+В проекционном режиме линейное увеличение задается$^\text{\cite{Lab}}$ отношением
+\begin{equation} \label{equ:micro_proj}
+    |\gamma_{\text{пр}}| \approx \frac{\Delta}{f_{\text{об}}} \cdot \frac{L - f_{\text{ок}}}{f_{\text{ок}}} \ .
+\end{equation}
+
+Все измерения можно провести с помощью источника света с некоторым изображением, набора линз, экрана и подзорной трубы, настроенной на бесконечность. Также можно использовать диафрагму для минимизирования аберрации и повышения точности наблюдений.
