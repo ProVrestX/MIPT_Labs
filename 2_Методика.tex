@@ -1,0 +1,79 @@
+\chapter{Методика} \vspace{-20pt}
+\label{ch:methods}
+
+Из-за волновой природы света согласно принципу Гюйгенса-Френеля каждый элемент волнового фронта является источником вторичных сферических волн. В зависимости от значения волнового параметра $p = \sqrt{\lambda z}/r$ (где $\lambda$ - длина волны, $z$ - расстояние до экрана, $r$ - характерный размер препятствия) наблюдаются различные режимы дифракции:
+\begin{itemize}
+    \item $p \ll 1$ - предел геометрической оптики;
+    \item $p \sim 1$ - дифракция Френеля (ближняя зона);
+    \item $p \gg 1$ - дифракция Фраунгофера (дальняя зона).
+\end{itemize}
+
+
+\section*{Дифракция Френеля на щели} \vspace{-15pt}
+
+При дифракции на щели шириной $b$ используется метод зон Шустера и спираль Корню. Расстояние $z$ от щели до плоскости наблюдения связано с числом $m$ открытых зон Френеля соотношением$^\text{\cite{Lab}}$
+\begin{equation} \label{equ:fresnel_slit}
+    b = (\sqrt{m_1} + \sqrt{m_2})\sqrt{\lambda z} \ ,
+\end{equation}
+где $m_1$ и $m_2$ - числа открытых зон с каждой стороны от центра. Для симметричного случая $m_1 = m_2 = m$ будет верно
+\begin{equation} \label{equ:fresnel_sym}
+    b = 2\sqrt{m\lambda z} \quad \Rightarrow \quad z = \frac{b^2}{4m\lambda} \ .
+\end{equation}
+
+Измеряя зависимость $z(m)$ по положению тёмных полос, можно определить ширину щели $b$ по наклону графика.
+
+
+\section*{Дифракция Фраунгофера на щели} \vspace{-15pt}
+
+В дальней зоне ($p \gg 1$) распределение интенсивности описывается формулой$^\text{\cite{Lab}}$
+\begin{equation} \label{equ:fraunhofer_intensity}
+    I(\theta) = I(0)\left(\frac{\sin(kb\sin\theta/2)}{kb\sin\theta/2}\right)^2 \ ,
+\end{equation}
+где $k = 2\pi/\lambda$. Из \eqref{equ:fraunhofer_intensity} следует, что минимумы интенсивности будут наблюдаются под углами
+\begin{equation} \label{equ:fraunhofer_minima}
+    \sin\theta_n \approx \theta_n = \frac{n\lambda}{b} \ , \quad (n = \pm 1, \pm 2, \dots) \ .
+\end{equation}
+В фокальной плоскости линзы с фокусным расстоянием $f$ координаты минимумов задаются отношением
+\begin{equation} \label{equ:fraunhofer_coords}
+    x_n = f\tan\theta_n \approx f\frac{n\lambda}{b} \ .
+\end{equation}
+
+По наклону зависимости $x_n(n)$ и зная фокусное расстояние $f$ линзы и длину волны $\lambda$, можно определить ширину щели $b$.
+
+\section*{Дифракция Фраунгофера на двух щелях} \vspace{-15pt}
+
+При наличии двух щелей шириной $b$ на расстоянии $d$ друг от друга наблюдается интерференция дифракционных картин. В данном случае распределение интенсивности задается соотношением$^\text{\cite{Lab}}$
+\begin{equation} \label{equ:double_slit}
+    I(\theta) = I(0)\left(\frac{\sin(kb\sin\theta/2)}{kb\sin\theta/2}\right)^2 \left(1 + \cos(kd\sin\theta)\right) \ .
+\end{equation}
+Интерференционные максимумы расположены под углами
+\begin{equation} \label{equ:interference_max}
+    \sin\theta_m \approx \theta_m = \frac{m\lambda}{d} \ , \quad (m = 0, \pm 1, \pm 2, \dots) \ .
+\end{equation}
+Расстояние между соседними интерференционными полосами в фокальной плоскости:
+\begin{equation} \label{equ:fringe_spacing}
+    \delta x = \frac{f\lambda}{d} \ .
+\end{equation}
+В пределах главного дифракционного максимума (угловая ширина $2\lambda/b$) укладывается следующее число тёмных интерференционных полос:
+\begin{equation} \label{equ:num_fringes}
+    N = \frac{2d}{b} \ .
+\end{equation}
+
+Для наблюдения чёткой интерференционной картины размер $a$ источника должен удовлетворять условию когерентности:
+\begin{equation} \label{equ:coherence}
+    d \leq \rho_{\text{ког}} \approx \frac{\lambda F}{a} \ ,
+\end{equation}
+где $F$ - фокусное расстояние коллимирующей линзы. По исчезновению интерференции при расширении щели можно оценить размер источника.
+
+% \section*{Дифракция Френеля на круглых отверстиях и препятствиях} \vspace{-15pt}
+
+% Для круглого отверстия радиуса $r$ число зон Френеля:
+% \begin{equation} \label{equ:circular_zones}
+%     N = \frac{r^2}{\lambda z} \ .
+% \end{equation}
+% При нечётном $N$ в центре наблюдается максимум, при чётном - минимум. Радиусы зон Френеля:
+% \begin{equation} \label{equ:fresnel_radius}
+%     r_m = \sqrt{m\lambda z} \ , \quad (m = \pm 1, \pm 2, \dots) \ .
+% \end{equation}
+
+% Для круглого препятствия применяется принцип Бабинэ: сумма амплитуд полей от взаимно дополнительных экранов равна амплитуде поля без экрана. Это объясняет наличие светлого пятна Пуассона в центре тени от круглого препятствия.
